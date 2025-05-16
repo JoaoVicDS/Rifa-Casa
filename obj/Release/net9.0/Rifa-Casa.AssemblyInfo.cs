@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Rifa-Casa")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b5f5115440e472a05c80e33d335fd1ed08d485be")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+017bdaf6381b18480d2d33f84890ec7e744b2354")]
 [assembly: System.Reflection.AssemblyProductAttribute("Rifa-Casa")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Rifa-Casa")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
