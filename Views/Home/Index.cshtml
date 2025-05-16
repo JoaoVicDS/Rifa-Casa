@@ -1,8 +1,23 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Rifa do Sonho";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container mt-4">
+    <!-- Título e Descrição -->
+    <div class="text-center mb-5">
+        <h1>Rifa do Sonho da Casa Própria</h1>
+        <p>Participe da rifa e concorra a prêmios incríveis!</p>
+    </div>
+
+    <!-- Prêmios -->
+    <div class="row text-center mb-5">
+        <div class="col-md-4"><h4>1º Prêmio</h4><p>Descrição</p></div>
+        <div class="col-md-4"><h4>2º Prêmio</h4><p>Descrição</p></div>
+        <div class="col-md-4"><h4>3º Prêmio</h4><p>Descrição</p></div>
+    </div>
+
+    <!-- Rifas - Placeholder para exibir depois -->
+    <div id="rifasContainer">
+        <!-- Aqui será injetado dinamicamente -->
+    </div>
 </div>

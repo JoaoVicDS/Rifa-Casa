@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Joao\\Projetos\\Rifa-Casa\\Rifa-Casa.csproj": {}
+    "C:\\Joao\\Projetos\\rifa-casa\\Rifa-Casa.csproj": {}
   },
   "projects": {
-    "C:\\Joao\\Projetos\\Rifa-Casa\\Rifa-Casa.csproj": {
+    "C:\\Joao\\Projetos\\rifa-casa\\Rifa-Casa.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Joao\\Projetos\\Rifa-Casa\\Rifa-Casa.csproj",
+        "projectUniqueName": "C:\\Joao\\Projetos\\rifa-casa\\Rifa-Casa.csproj",
         "projectName": "Rifa-Casa",
-        "projectPath": "C:\\Joao\\Projetos\\Rifa-Casa\\Rifa-Casa.csproj",
+        "projectPath": "C:\\Joao\\Projetos\\rifa-casa\\Rifa-Casa.csproj",
         "packagesPath": "C:\\Users\\João\\.nuget\\packages\\",
-        "outputPath": "C:\\Joao\\Projetos\\Rifa-Casa\\obj\\",
+        "outputPath": "C:\\Joao\\Projetos\\rifa-casa\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

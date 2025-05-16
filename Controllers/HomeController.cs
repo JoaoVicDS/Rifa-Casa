@@ -18,7 +18,12 @@ public class HomeController : Controller
         return View();
     }
 
-    public IActionResult Privacy()
+    public IActionResult Winners()
+    {
+        return View();
+    }
+
+    public IActionResult MyRaffles()
     {
         return View();
     }
