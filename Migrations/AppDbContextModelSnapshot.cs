@@ -51,26 +51,26 @@ namespace Rifa_Casa.Migrations
                     b.Property<bool>("Available")
                         .HasColumnType("boolean");
 
+                    b.Property<string>("BuyerPhone")
+                        .HasColumnType("text");
+
                     b.Property<int>("Number")
                         .HasColumnType("integer");
 
-                    b.Property<string>("buyerPhone")
-                        .HasColumnType("text");
-
                     b.HasKey("Id");
 
-                    b.HasIndex("buyerPhone");
+                    b.HasIndex("BuyerPhone");
 
                     b.ToTable("Raffles");
                 });
 
             modelBuilder.Entity("Rifa_Casa.Models.Raffle", b =>
                 {
-                    b.HasOne("Rifa_Casa.Models.Buyer", "buyer")
+                    b.HasOne("Rifa_Casa.Models.Buyer", "Buyer")
                         .WithMany("Raffles")
-                        .HasForeignKey("buyerPhone");
+                        .HasForeignKey("BuyerPhone");
 
-                    b.Navigation("buyer");
+                    b.Navigation("Buyer");
                 });
 
             modelBuilder.Entity("Rifa_Casa.Models.Buyer", b =>

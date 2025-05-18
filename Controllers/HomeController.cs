@@ -5,44 +5,39 @@ using Rifa_Casa.Models;
 
 namespace Rifa_Casa.Controllers;
 
-public class HomeController : Controller
+// Utilizando o construtor primário
+public class HomeController(ILogger<HomeController> logger, AppDbContext context) : Controller 
 {
-    private readonly ILogger<HomeController> _logger;
-    private readonly AppDbContext _context;
+    private readonly ILogger<HomeController> _logger = logger;
+    private readonly AppDbContext _context = context;
 
-    public HomeController(ILogger<HomeController> logger, AppDbContext context)
+    public IActionResult Index()
     {
-        _context = context;
-        _logger = logger;
-    }
+        int pageSize = 50; // Quantidade de Rifas Por Página
 
-    public IActionResult Index(int page = 1)
-    {
-        int pageSize = 100;
-
-        var TotalRaffles = _context.Raffles.Count();
-        var TotalPages = (int)Math.Ceiling((double)TotalRaffles / pageSize);
+        var TotalRaffles = _context.Raffles.Count(); // Total de rifas no db usando Count
+        var TotalPages = (int)Math.Ceiling((double)TotalRaffles / pageSize); // cálcula o total de páginas
 
         var raffle = _context.Raffles
-            .OrderBy(r => r.Number)
-            .Skip((page - 1) * pageSize)
-            .Take(pageSize)
-            .Select(r => new RaffleViewModel
+            .Where(r => r.Available) // Filtra as rifas disponíveis
+            .OrderBy(r => r.Number) // Ordena as rifas pelo número
+            .Select(r => new RaffleViewModel // Seleciona os dados necessários para a view
             {
                 Id = r.Id,
                 Number = r.Number,
                 Available = r.Available
             })
-            .ToList();
+            .ToList(); // Converte para lista
 
-        var model = new IndexViewModel
+        var model = new IndexModel // Cria o modelo para a view
         {
             Raffles = raffle,
-            PageCurrent = page,
+            PageCurrent = 1,
+            PageSize = pageSize,
             TotalPages = TotalPages
         };
 
-        return View(model);
+        return View(model); // Retorna a view com o modelo
     }
 
     public IActionResult Winners()

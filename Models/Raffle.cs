@@ -9,11 +9,11 @@ namespace Rifa_Casa.Models
 
         [Required(ErrorMessage = "O número da Rifa é obrigatório")]
         [Range(1, int.MaxValue, ErrorMessage = "O número da rifa deve ser maior que zero.")]
-        public int Number { get; set; }
+        public required int Number { get; set; }
         public bool Available { get; set; } = true;
 
         [Phone(ErrorMessage = "Telefone do comprador inválido.")]
-        public string? buyerPhone { get; set; }
-        public Buyer? buyer { get; set; }
+        public string? BuyerPhone { get; set; }
+        public Buyer? Buyer { get; set; }
     }
 }

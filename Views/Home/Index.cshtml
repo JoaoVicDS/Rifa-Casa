@@ -1,53 +1,275 @@
-﻿@model IndexViewModel
+﻿@model IndexModel
 @{
-    ViewData["Title"] = "Rifa do Sonho";
+    ViewData["Title"] = "Rifa Casa Própria";
 }
+<style>
+    .raffle-checkbox {
+        opacity: 0;
+        position: absolute;
+    }
 
-<div class="container mt-4">
-    <!-- Título e Descrição -->
+    .raffle-box {
+        display: inline-block;
+        width: 70px;
+        height: 70px;
+        line-height: 70px;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+        box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    }
+
+    .raffle-checkbox:checked + .raffle-box {
+        background-color: #ffc107 !important; /* Amarelo para destacar */
+        color: #000;
+        box-shadow: 0 0 0 3px #fff, 0 0 10px #ffc107;
+    }
+</style>
+
+<div class="container mt-5">
+    <!-- Cabeçalho da Landing Page -->
     <div class="text-center mb-5">
-        <h1>Rifa do Sonho da Casa Própria</h1>
-        <p>Participe da rifa e concorra a prêmios incríveis!</p>
-    </div>
-
-    <!-- Prêmios -->
-    <div class="row text-center mb-5">
-        <div class="col-md-4"><h4>1º Prêmio</h4><p>Descrição</p></div>
-        <div class="col-md-4"><h4>2º Prêmio</h4><p>Descrição</p></div>
-        <div class="col-md-4"><h4>3º Prêmio</h4><p>Descrição</p></div>
-    </div>
-
-    <h2 class="my-4 text-center">Selecione suas Rifas</h2>
-
-    <form id="formRaffles" method="post" asp-controller="Compra" asp-action="DadosUsuario">
-        <div class="row row-cols-5 g-2">
-            @foreach (var raffle in Model.Raffles)
-            {
-                <div class="col">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="rifaIds" value="@raffle.Id" id="raffle_@raffle.Id" @(raffle.Available ? "" : "disabled")>
-                        <label class="form-check-label @(raffle.Available ? "" : "text-danger")" for="rifa_@raffle.Id">
-                            @raffle.Number
-                        </label>
-                    </div>
-                </div>
-            }
+        <h1 class="display-4 fw-bold text-primary">🏠 Rifa Casa Própria</h1>
+        <h1 class="display-4 fw-bold text-secondary mb-5">Ajude na Conquista da Minha Casa!</h1>
+        <!-- Apresentação do João -->
+        <div class="text-center mb-5 mx-auto" style="margin-top: 5%; ">
+            <h2 class="fw-bold text-dark">✨ Conheça minha história</h2>
+            <p class="lead text-secondary">
+                Olá! Me chamo <strong>João Víctor</strong>, tenho <strong>21 anos</strong> e sou mais um entre milhões de brasileiros que sonham em conquistar a tão sonhada <strong>casa própria</strong>.
+            </p>
+            <p class="lead text-secondary">
+                Nos últimos <strong>dois anos</strong>, venho morando de aluguel, lutando todos os meses para equilibrar as contas e guardar um pouco do que posso. Tenho trabalhado com dedicação e buscando alternativas para realizar esse sonho de forma honesta e transparente — e foi assim que nasceu essa <strong>Rifa Casa Própria</strong>.
+            </p>
+            <p class="lead text-secondary">
+                Com sua ajuda, estou dando um passo importante rumo a essa conquista. Todo valor arrecadado com a rifa será investido diretamente na entrada da minha casa. Mais do que uma rifa, essa é uma corrente de solidariedade, onde cada número representa uma esperança, uma oportunidade e uma parte de um sonho.
+            </p>
+            <p class="lead text-secondary">
+                <strong>Conto com você nessa jornada!</strong>
+            </p>
         </div>
 
-        <div class="mt-4 text-center">
-            <button type="submit" class="btn btn-primary">Continuar para pagamento</button>
+        
+        <!-- Destaques da Rifa -->
+        <div class="row text-center mb-5">
+            <div class="col-md-4 mb-3">
+                <div class="card border-success shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title text-success">🎁 Prêmio</h4>
+                        <p class="card-text">R$500,00 no PIX do sorteado</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card border-info shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title text-info">💸 Valor da Rifa</h4>
+                        <p class="card-text">Apenas R$25,00 cada número</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 mb-3">
+                <div class="card border-warning shadow-sm">
+                    <div class="card-body">
+                        <h4 class="card-title text-warning">📅 Sorteio</h4>
+                        <p class="card-text">O sorteio será no dia DD/MM/AAAA</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- VALOR ARRECADADO -->
+    <div class="text-center my-5">
+        <div class="p-4 bg-light rounded shadow-sm border border-success">
+            <h2 class="text-success fw-bold">💰 Valor Arrecadado</h2>
+            <p class="fs-3 text-dark">
+                Já arrecadamos <strong class="text-success">R$ 5.000,00</strong> com a ajuda de todos!
+            </p>
+            <p class="text-muted">Cada rifa comprada nos aproxima do sonho da casa própria!</p>
+        </div>
+    </div>
+
+    <!-- Seleção das Rifas -->
+    <h2 class="text-center mb-4">📍 Escolha seus números da sorte</h2>
+
+    <form id="formRaffles" method="post" asp-controller="Home" asp-action="OpenFormBuyer">
+        <div class="row row-cols-5 g-2" id="raffles-container">
+            <!-- Rifas renderizadas via JavaScript -->
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-lg btn-success shadow" id="btnFormBuyerModal">
+                Comprar
+            </button>
         </div>
     </form>
 
+    <!-- Paginação -->
     <nav class="mt-5 d-flex justify-content-center">
-        <ul class="pagination">
-            @for (int i = 1; i <= Model.TotalPages; i++)
-            {
-                <li class="page-item @(i == Model.PageCurrent ? "active" : "")">
-                    <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
-                </li>
-            }
-        </ul>
+        <ul class="pagination" id="pagination"></ul>
     </nav>
 
+    <!-- Seção de Compartilhamento -->
+    <div class="mt-5 pt-5 border-top text-center">
+        <h3 class="text-primary mb-3">📢 Compartilhe com seus amigos!</h3>
+        <p class="mb-4 text-secondary">Ajude-nos a divulgar essa causa solidária. Copie o link do site:</p>
+
+        <div class="input-group mb-3 justify-content-center" style="max-width: 600px; margin: 0 auto;">
+            <input type="text" id="siteLink" class="form-control" value="https://seudominio.com" readonly>
+            <button class="btn btn-outline-primary" type="button" onclick="copiarLink()">Copiar</button>
+        </div>
+        <div id="copyMsg" class="text-success" style="display:none;">✅ Link copiado com sucesso!</div>
+    </div>
 </div>
+
+<!-- Modais -->
+<partial name="_FormBuyerModal" />
+<partial name="_MyRafflesModal" />
+<partial name="_NoRaffleSelectedModal" />
+
+@section Scripts {
+    <script>
+        function copiarLink() {
+            const link = document.getElementById("siteLink").value;
+
+            navigator.clipboard.writeText(link)
+            .then(() => {
+                const msg = document.getElementById("copyMsg");
+                msg.style.display = "block";
+                setTimeout(() => { msg.style.display = "none"; }, 3000);
+            })
+            .catch(err => {
+                console.error("Erro ao copiar o link: ", err);
+            });
+        }
+
+
+
+        const raffles = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.Raffles));
+        const pageSize = @Model.PageSize;
+        const totalPages = @Model.TotalPages;
+        let currentPage = @Model.PageCurrent;
+
+        function renderRaffles(page) {
+            const start = (page - 1) * pageSize;
+            const end = start + pageSize;
+            const pageRaffles = raffles.slice(start, end);
+
+            const container = document.getElementById('raffles-container');
+            container.innerHTML = '';
+
+            pageRaffles.forEach(raffle => {
+                container.innerHTML += `
+                    <div class="col text-center">
+                        <div class="form-check d-inline-block">
+                            <input type="checkbox" class="form-check-input raffle-checkbox" name="rifaIds" value="${raffle.Id}" id="raffle_${raffle.Id}" ${raffle.Available ? '' : 'disabled'}>
+                            <label for="raffle_${raffle.Id}" class="raffle-box ${raffle.Available ? 'bg-success text-white' : 'bg-secondary text-white'}">
+                                ${raffle.Number}
+                            </label>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+
+        function renderPagination() {
+            const pagination = document.getElementById('pagination');
+            let pagHtml = '';
+
+            // Primeira página
+            pagHtml += `
+                <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="goToPage(1); return false;">«</a>
+                </li>
+            `;
+
+            // Números de página
+            for (let i = 1; i <= totalPages; i++) {
+                pagHtml += `
+                    <li class="page-item ${i === currentPage ? 'active' : ''}">
+                        <a class="page-link" href="#" onclick="goToPage(${i}); return false;">${i}</a>
+                    </li>
+                `;
+            }
+
+            // Última página
+            pagHtml += `
+                <li class="page-item ${currentPage === totalPages ? 'disabled' : ''}">
+                    <a class="page-link" href="#" onclick="goToPage(${totalPages}); return false;">»</a>
+                </li>
+            `;
+
+            pagination.innerHTML = pagHtml;
+        }
+
+
+        function goToPage(page) {
+            currentPage = page;
+            renderRaffles(page);
+            renderPagination();
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderRaffles(currentPage);
+            renderPagination();
+            const comprarBtn = document.getElementById('btnFormBuyerModal');
+            const formBuyerModal = document.getElementById('formBuyerModal');
+            const alertModal = document.getElementById('alertModal');
+            const bsModal = new bootstrap.Modal(formBuyerModal);
+            const bsAlertModal = new bootstrap.Modal(alertModal);
+
+            if (comprarBtn) {
+                comprarBtn.addEventListener('click', () => {
+                    const checkboxes = document.querySelectorAll('input[name="rifaIds"]:checked');
+
+                    if (checkboxes.length === 0) {
+                        bsAlertModal.show(); // Abre o modal de alerta se nenhuma rifa estiver selecionada
+                        return;
+                    }
+
+                    atualizarResumoRifas();
+                    bsModal.show(); // Abre o modal manualmente
+                });
+            }
+        });
+    </script>
+    <script>
+        const rifaValor = 25.00;
+
+        function atualizarResumoRifas() {
+            const checkboxes = document.querySelectorAll('input[name="rifaIds"]:checked');
+            const selectedList = document.getElementById('selectedRafflesList');
+            const totalAmount = document.getElementById('totalAmount');
+            const hiddenInputsDiv = document.getElementById('hiddenRaffleInputs');
+
+            selectedList.innerHTML = '';
+            hiddenInputsDiv.innerHTML = '';
+            let total = 0;
+
+            checkboxes.forEach(cb => {
+                const label = document.querySelector(`label[for="${cb.id}"]`);
+
+                // Lista visível
+                const li = document.createElement('li');
+                li.className = 'list-group-item list-group-item-light';
+                li.innerText = `Rifa nº ${label ? label.innerText : cb.value}`;
+                selectedList.appendChild(li);
+
+                // Input escondido
+                const hiddenInput = document.createElement('input');
+                hiddenInput.type = 'hidden';
+                hiddenInput.name = 'rifaIds[]';
+                hiddenInput.value = cb.value;
+                hiddenInputsDiv.appendChild(hiddenInput);
+
+                total += rifaValor;
+            });
+
+            totalAmount.innerText = `R$ ${total.toFixed(2).replace('.', ',')}`;
+        }
+
+    </script>
+
+}

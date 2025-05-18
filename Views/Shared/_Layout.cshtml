@@ -8,22 +8,45 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Rifa_Casa.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-white">
             <div class="container">
-                <div class="collapse navbar-collapse">
+                <a class="navbar-brand text-dark fw-bold" href="/">
+                    🏠 Rifa Casa Própria
+                </a>
+
+                <!-- Botão responsivo (hambúrguer) -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+                        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <!-- Itens do menu -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto">
-                        <li class="nav-item"><a class="nav-link" href="/">Início</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/Home/Ganhadores">Ganhadores</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#minhasRifasModal">Minhas Rifas</a></li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-semibold" href="/">Início</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-semibold" href="/winner">Ganhador</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark fw-semibold" href="#" data-bs-toggle="modal" data-bs-target="#myRafflesModal">Minhas Rifas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://github.com/JoaoVicDS/Rifa-Casa" target="_blank">
+                                <i class="fab fa-github text-dark"></i>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
     </header>
-    <div class="container">
+    <div class="container" style="padding-top: 80px;">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -38,22 +61,6 @@
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
-    <div class="modal fade" id="minhasRifasModal" tabindex="-1">
-        <div class="modal-dialog">
-            <form class="modal-content" method="post" action="/Home/MinhasRifas">
-                <div class="modal-header">
-                    <h5 class="modal-title">Consultar Rifas</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <label for="telefone">Telefone:</label>
-                    <input type="text" class="form-control" id="telefone" name="telefone" required placeholder="(DDD) 9xxxx-xxxx" />
-                </div>
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary">Consultar</button>
-                </div>
-            </form>
-        </div>
-    </div>
+    
 </body>
 </html>

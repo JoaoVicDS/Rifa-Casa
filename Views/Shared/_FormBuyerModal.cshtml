@@ -1,0 +1,50 @@
+﻿<div class="modal fade" id="formBuyerModal" tabindex="-1" aria-labelledby="formBuyerModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <form class="modal-content shadow-lg border-0 rounded-4" method="post" asp-controller="Home" asp-action="PostBuyer">
+            <div class="modal-header text-primary rounded-top-4" style="border-bottom: none; position: relative;">
+                <h5 class="modal-title w-100 text-center fw-bold" id="formBuyerModalLabel" style="margin: 0 auto;">Me Conte Sobre Você</h5>
+                <button type="button" class="btn-close btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        style="position: absolute; top: 16px; right: 16px;"></button>
+            </div>
+
+            <div class="modal-body px-4 py-3">
+                <div id="hiddenRaffleInputs"></div>
+                <div class="row">
+                    <!-- Formulário do comprador -->
+                    <div class="col-md-7">
+                        <div class="mb-2">
+                            <label for="nome" class="form-label fw-semibold">Nome</label>
+                            <input type="text" class="form-control form-control-lg rounded-3" id="nome" name="nome" required autocomplete="off" />
+                        </div>
+                        <div class="mb-2">
+                            <label for="email" class="form-label fw-semibold">Email</label>
+                            <input type="email" class="form-control form-control-lg rounded-3" id="email" name="email" required autocomplete="off" />
+                        </div>
+                        <div class="mb-2">
+                            <label for="telefone" class="form-label fw-semibold">WhatsApp</label>
+                            <input type="tel" class="form-control form-control-lg rounded-3" id="telefone" name="telefone" required placeholder="(DDD) 9xxxx-xxxx" autocomplete="off" />
+                        </div>
+                        <p class="text-muted" style="font-size: 12px">Suas informações serão usadas apenas para entrarmos em contato caso seja sorteado.</p>
+                    </div>
+
+                    <!-- Rifas selecionadas -->
+                    <div class="col-md-5">
+                        <div class="border rounded-3 p-3 bg-light shadow-sm">
+                            <h6 class="fw-bold text-secondary">📄 Números Selecionados:</h6>
+                            <ul id="selectedRafflesList" class="list-group mb-2" style="max-height: 200px; overflow-y: auto;"></ul>
+
+                            <div class="mt-3">
+                                <span class="fw-bold">Total:</span>
+                                <span class="text-success fw-bold" id="totalAmount">R$ 0,00</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer rounded-bottom-4 border-0 justify-content-end px-4">
+                <button type="submit" class="btn btn-lg btn-success rounded-3 fw-bold shadow-sm">Comprar</button>
+            </div>
+        </form>
+    </div>
+</div>
