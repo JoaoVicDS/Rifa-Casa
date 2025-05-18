@@ -11,12 +11,18 @@ public class HomeController(ILogger<HomeController> logger, AppDbContext context
     private readonly ILogger<HomeController> _logger = logger;
     private readonly AppDbContext _context = context;
 
-    public IActionResult Index()
+    public HomeController(ILogger<HomeController> logger, AppDbContext context)
     {
-        int pageSize = 50; // Quantidade de Rifas Por Página
+        _context = context;
+        _logger = logger;
+    }
 
-        var TotalRaffles = _context.Raffles.Count(); // Total de rifas no db usando Count
-        var TotalPages = (int)Math.Ceiling((double)TotalRaffles / pageSize); // cálcula o total de páginas
+    public IActionResult Index(int page = 1)
+    {
+        int pageSize = 100;
+
+        var TotalRaffles = _context.Raffles.Count();
+        var TotalPages = (int)Math.Ceiling((double)TotalRaffles / pageSize);
 
         var raffle = _context.Raffles
             .Where(r => r.Available) // Filtra as rifas disponíveis
