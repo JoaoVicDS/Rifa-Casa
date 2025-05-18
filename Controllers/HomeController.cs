@@ -13,7 +13,7 @@ public class HomeController(ILogger<HomeController> logger, AppDbContext context
 
     public IActionResult Index()
     {
-        int pageSize = 50; // Quantidade de Rifas Por Página
+        int pageSize = 20; // Quantidade de Rifas Por Página
 
         var TotalRaffles = _context.Raffles.Count(); // Total de rifas no db usando Count
         var TotalPages = (int)Math.Ceiling((double)TotalRaffles / pageSize); // cálcula o total de páginas

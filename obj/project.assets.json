@@ -15,6 +15,18 @@
           }
         }
       },
+      "MercadoPago/1.0.4477.31589": {
+        "type": "package",
+        "dependencies": {
+          "RestSharp": "102.7.0"
+        },
+        "compile": {
+          "lib/MercadoPago.dll": {}
+        },
+        "runtime": {
+          "lib/MercadoPago.dll": {}
+        }
+      },
       "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
         "type": "package",
         "compile": {
@@ -653,6 +665,19 @@
           "buildTransitive/Mono.TextTemplating.targets": {}
         }
       },
+      "Newtonsoft.Json/3.5.8": {
+        "type": "package",
+        "compile": {
+          "lib/35/Newtonsoft.Json.dll": {
+            "related": ".pdb;.xml"
+          }
+        },
+        "runtime": {
+          "lib/35/Newtonsoft.Json.dll": {
+            "related": ".pdb;.xml"
+          }
+        }
+      },
       "Npgsql/9.0.3": {
         "type": "package",
         "dependencies": {
@@ -685,6 +710,18 @@
           "lib/net8.0/Npgsql.EntityFrameworkCore.PostgreSQL.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "RestSharp/102.7.0": {
+        "type": "package",
+        "dependencies": {
+          "Newtonsoft.Json": "(, )"
+        },
+        "compile": {
+          "lib/net35/RestSharp.dll": {}
+        },
+        "runtime": {
+          "lib/net35/RestSharp.dll": {}
         }
       },
       "System.CodeDom/6.0.0": {
@@ -931,6 +968,19 @@
         "lib/netstandard2.0/Humanizer.dll",
         "lib/netstandard2.0/Humanizer.xml",
         "logo.png"
+      ]
+    },
+    "MercadoPago/1.0.4477.31589": {
+      "sha512": "GX1NSZaDdUcxmBkCEmaoCkJo/+FtZy0RmKbV2Yw9UBf9+2O2kULDhKWEdpWH23zsUoJunXb3taAlmqi5nMWEBw==",
+      "type": "package",
+      "path": "mercadopago/1.0.4477.31589",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "content/README-MercadoPago.html",
+        "lib/MercadoPago.dll",
+        "mercadopago.1.0.4477.31589.nupkg.sha512",
+        "mercadopago.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
@@ -2354,6 +2404,26 @@
         "readme.md"
       ]
     },
+    "Newtonsoft.Json/3.5.8": {
+      "sha512": "Xmri4q9s1NjuiBtOFkWMU9sUZdw5V7kFSf3CQQ3TlDyzWQHo94d5cHNxsSlnezGAZSPfdEG5k7bOrkzTe6rUOQ==",
+      "type": "package",
+      "path": "newtonsoft.json/3.5.8",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/20/Newtonsoft.Json.Net20.dll",
+        "lib/20/Newtonsoft.Json.Net20.pdb",
+        "lib/20/Newtonsoft.Json.Net20.xml",
+        "lib/35/Newtonsoft.Json.dll",
+        "lib/35/Newtonsoft.Json.pdb",
+        "lib/35/Newtonsoft.Json.xml",
+        "lib/SL/Newtonsoft.Json.Silverlight.dll",
+        "lib/SL/Newtonsoft.Json.Silverlight.pdb",
+        "lib/SL/Newtonsoft.Json.Silverlight.xml",
+        "newtonsoft.json.3.5.8.nupkg.sha512",
+        "newtonsoft.json.nuspec"
+      ]
+    },
     "Npgsql/9.0.3": {
       "sha512": "tPvY61CxOAWxNsKLEBg+oR646X4Bc8UmyQ/tJszL/7mEmIXQnnBhVJZrZEEUv0Bstu0mEsHZD5At3EO8zQRAYw==",
       "type": "package",
@@ -2384,6 +2454,22 @@
         "npgsql.entityframeworkcore.postgresql.9.0.4.nupkg.sha512",
         "npgsql.entityframeworkcore.postgresql.nuspec",
         "postgresql.png"
+      ]
+    },
+    "RestSharp/102.7.0": {
+      "sha512": "G5PnwhT5d92i75cFP4ql+MZXs0AmRCnzV3BDNr01WT1SkY8QODttbJBz2tNJdLcKLuWfhf88/F6ThklStL9Yyw==",
+      "type": "package",
+      "path": "restsharp/102.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net35-client/RestSharp.dll",
+        "lib/net35/RestSharp.dll",
+        "lib/sl3-wp/RestSharp.WindowsPhone.dll",
+        "lib/sl4-wp71/RestSharp.WindowsPhone.dll",
+        "lib/sl4/RestSharp.Silverlight.dll",
+        "restsharp.102.7.0.nupkg.sha512",
+        "restsharp.nuspec"
       ]
     },
     "System.CodeDom/6.0.0": {
@@ -2777,6 +2863,7 @@
   },
   "projectFileDependencyGroups": {
     "net9.0": [
+      "MercadoPago >= 1.0.4477.31589",
       "Microsoft.EntityFrameworkCore.Design >= 9.0.5",
       "Npgsql.EntityFrameworkCore.PostgreSQL >= 9.0.4"
     ]
@@ -2832,6 +2919,10 @@
       "net9.0": {
         "targetAlias": "net9.0",
         "dependencies": {
+          "MercadoPago": {
+            "target": "Package",
+            "version": "[1.0.4477.31589, )"
+          },
           "Microsoft.EntityFrameworkCore.Design": {
             "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
             "suppressParent": "All",
@@ -2865,5 +2956,47 @@
         "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.300/PortableRuntimeIdentifierGraph.json"
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1602",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "RestSharp 102.7.0 does not provide an inclusive lower bound for dependency Newtonsoft.Json. Newtonsoft.Json 3.5.8 was resolved instead.",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'MercadoPago 1.0.4477.31589' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0'. This package may not be fully compatible with your project.",
+      "libraryId": "MercadoPago",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'Newtonsoft.Json 3.5.8' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0'. This package may not be fully compatible with your project.",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'RestSharp 102.7.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net9.0'. This package may not be fully compatible with your project.",
+      "libraryId": "RestSharp",
+      "targetGraphs": [
+        "net9.0"
+      ]
+    }
+  ]
 }
