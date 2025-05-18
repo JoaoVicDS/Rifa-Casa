@@ -1,11 +1,11 @@
 # Etapa 1: build
-FROM mcr.microsoft.com/dotnet/sdk:9.0.0-preview.4
+FROM mcr.microsoft.com/dotnet/sdk:9.0.0-preview.4 AS build
 WORKDIR /app
 
 # Copia tudo e restaura dependências
 COPY . . 
 RUN dotnet restore
-RUN dotnet publish -c Release -o out
+RUN dotnet publish -c Release -o /app/out
 
 # Etapa 2: runtime
 FROM mcr.microsoft.com/dotnet/aspnet:7.0
