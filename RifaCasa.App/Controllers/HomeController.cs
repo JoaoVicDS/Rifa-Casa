@@ -1,9 +1,9 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Rifa_Casa.Data;
-using Rifa_Casa.Models;
+using RifaCasa.Data;
+using RifaCasa.ViewModels;
 
-namespace Rifa_Casa.Controllers;
+namespace RifaCasa.Controllers;
 
 // Utilizando o construtor primário
 public class HomeController(ILogger<HomeController> logger, AppDbContext context) : Controller 

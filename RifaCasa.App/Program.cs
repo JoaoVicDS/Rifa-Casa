@@ -1,4 +1,4 @@
-using Rifa_Casa.Data;
+using RifaCasa.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,4 +1,4 @@
-﻿namespace Rifa_Casa.Models
+﻿namespace RifaCasa.ViewModels
 {
     public class RaffleViewModel
     {

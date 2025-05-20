@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Rifa_Casa.Migrations
+namespace RifaCasa.Migrations
 {
     /// <inheritdoc />
     public partial class SendRafflesAgain : Migration

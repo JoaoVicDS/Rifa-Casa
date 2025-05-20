@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Rifa_Casa.Models;
+using RifaCasa.Models;
 
-namespace Rifa_Casa.Data
+namespace RifaCasa.Data
 {
     public class AppDbContext : DbContext
     {

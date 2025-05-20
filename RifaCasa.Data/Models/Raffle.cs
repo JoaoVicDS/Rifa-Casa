@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Rifa_Casa.Models
+namespace RifaCasa.Models
 {
     public class Raffle
     {

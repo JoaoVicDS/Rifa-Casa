@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
-using Rifa_Casa.Data;
+using RifaCasa.Data;
 
 #nullable disable
 
@@ -12,7 +12,7 @@ namespace Rifa_Casa.Migrations
 {
     [DbContext(typeof(AppDbContext))]
     [Migration("20250516033658_SeedRaffles")]
-    partial class SeedRaffles
+    partial class SeedRaffles : Migration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -81,6 +81,11 @@ namespace Rifa_Casa.Migrations
                     b.Navigation("Raffles");
                 });
 #pragma warning restore 612, 618
+        }
+
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            throw new NotImplementedException();
         }
     }
 }
