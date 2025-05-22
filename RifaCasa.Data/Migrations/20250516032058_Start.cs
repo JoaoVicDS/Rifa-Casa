@@ -3,7 +3,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
-namespace RifaCasa.Migrations
+namespace RifaCasa.Data.Migrations
 {
     /// <inheritdoc />
     public partial class Start : Migration

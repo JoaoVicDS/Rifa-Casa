@@ -6,6 +6,6 @@
         public int PageCurrent { get; set; }
         public int PageSize { get; set; } // Quantidade de Rifas Por Página
         public int TotalPages { get; set; }
-        public RafflePurchaseModel RafflePurchaseModel { get; set; } = new RafflePurchaseModel();
+        public RafflePurchaseViewModel RafflePurchaseViewModel { get; set; } = new RafflePurchaseViewModel();
     }
 }

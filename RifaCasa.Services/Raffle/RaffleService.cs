@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RifaCasa.Data;
+using RifaCasa.Data.EFCore;
 using RifaCasa.Shared.ViewModels;
 
 namespace RifaCasa.Services.Raffle

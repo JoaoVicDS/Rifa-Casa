@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace RifaCasa.Models
+namespace RifaCasa.Data.Models
 {
     public class Buyer
     {

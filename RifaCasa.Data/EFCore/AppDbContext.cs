@@ -1,12 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using RifaCasa.Models;
+using RifaCasa.Data.Models;
 
-namespace RifaCasa.Data
+namespace RifaCasa.Data.EFCore
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
-        
         public DbSet<Raffle> Raffles { get; set; }
         public DbSet<Buyer> Buyers { get; set; }
 

@@ -1,7 +1,7 @@
 ﻿
 namespace RifaCasa.Shared.ViewModels
 {
-    public class RafflePurchaseModel
+    public class RafflePurchaseViewModel
     {
         public string Name { get; set; }
         public string Email { get; set; }
