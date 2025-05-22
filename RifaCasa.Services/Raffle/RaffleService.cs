@@ -8,26 +8,25 @@ namespace RifaCasa.Services.Raffle
     {
         private readonly AppDbContext _context = context;
 
-        public IndexModel GetRaffles(int pageSize, int pageNumber = 1)
+        public async Task<IndexModel> GetRafflesAsync(int pageSize, int pageNumber = 1)
         {
-            var totalRaffles = _context.Raffles.Count(); // Total de rifas no db usando Count
-            var totalPages = (int)Math.Ceiling((double)totalRaffles / pageSize); // cálcula o total de páginas
+            var totalRaffles = await _context.Raffles.CountAsync(); // Total de Rifas na tabela
+            var totalPages = (int)Math.Ceiling((double)totalRaffles / pageSize); // Total de páginas
 
-            // Obtém o total de rifas
-            var raffles = _context.Raffles
+            var raffles = await _context.Raffles
                 .OrderBy(r => r.Number)
-                .Include(r => r.Buyer) // Inclui a entidade Buyer para obter os dados do comprador
-                .Select(r => new RaffleViewModel // Seleciona os dados necessários para a view
+                .Include(r => r.Buyer) // Inclui o comprador na consulta
+                .Select(r => new RaffleViewModel // Cria uma nova instância de RaffleViewModel para cada rifa
                 {
                     Id = r.Id,
                     Number = r.Number,
                     Available = r.Available,
-                    BuyerPhone = r.BuyerPhone, // Acessa diretamente o telefone do comprador
-                    BuyerName = r.Buyer == null ? null : r.Buyer.Name // Verifica se o comprador é nulo antes de acessar a propriedade Name
-                }) 
-                .ToList(); // Converte para lista
+                    BuyerPhone = r.BuyerPhone,
+                    BuyerName = r.Buyer == null ? null : r.Buyer.Name // Verifica se o comprador é nulo
+                })
+                .ToListAsync(); // Obtém todas as rifas da tabela
 
-            return new IndexModel // Retorna o modelo com as rifas
+            return new IndexModel
             {
                 Raffles = raffles,
                 PageCurrent = pageNumber,
@@ -36,48 +35,49 @@ namespace RifaCasa.Services.Raffle
             };
         }
 
-        public IndexModel GetRafflesByPhone(int pageSize, string buyerPhone)
+        public async Task<IndexModel> GetRafflesByPhoneAsync(int pageSize, string buyerPhone)
         {
-            var totalRaffles = _context.Raffles // Total de rifas do comprador
-                .Count(r => r.BuyerPhone == buyerPhone);
-                
-            var totalPages = (int)Math.Ceiling((double)totalRaffles / pageSize); // cálcula o total de páginas
+            var totalRaffles = await _context.Raffles
+                .CountAsync(r => r.BuyerPhone == buyerPhone); // Total de Rifas do Comprador
 
-            var buyersRaffles = _context.Raffles
+            var totalPages = (int)Math.Ceiling((double)totalRaffles / pageSize); // Total de páginas
+
+            var buyersRaffles = await _context.Raffles // Obtém todas as rifas do comprador
                 .Where(r => r.BuyerPhone == buyerPhone)
                 .OrderBy(r => r.Number)
-                .Include(r => r.Buyer) // Inclui a entidade Buyer para obter os dados do comprador
+                .Include(r => r.Buyer)
                 .Select(r => new RaffleViewModel
                 {
                     Id = r.Id,
-                    Number = r.Number, 
+                    Number = r.Number,
                     Available = r.Available,
-                    BuyerPhone = r.BuyerPhone, // Acessa diretamente o telefone do comprador
-                    BuyerName = r.Buyer != null ? r.Buyer.Name : null // Verifica se o comprador é nulo antes de acessar a propriedade Name
+                    BuyerPhone = r.BuyerPhone,
+                    BuyerName = r.Buyer != null ? r.Buyer.Name : null // Verifica se o comprador é nulo
                 })
-                .ToList(); // Converte para lista
+                .ToListAsync();
 
-            return new IndexModel // Retorna o modelo com as rifas
+            return new IndexModel
             {
                 Raffles = buyersRaffles,
-                PageCurrent = 1, // Sempre começa na primeira página
+                PageCurrent = 1,
                 PageSize = pageSize,
                 TotalPages = totalPages
             };
         }
 
-        public void UpdateRaffles(List<int> rafflesIds, string buyerPhone)
+        public async Task UpdateRafflesAsync(List<int> rafflesIds, string buyerPhone)
         {
             foreach (var id in rafflesIds)
             {
-                var raffle = _context.Raffles.Find(id);
-                if (raffle != null)
+                var raffle = await _context.Raffles.FindAsync(id); // Obtém a rifa pelo ID
+                if (raffle != null) // Verifica se a rifa existe
                 {
-                    raffle.BuyerPhone = buyerPhone; // Atualiza o telefone do comprador
-                    raffle.Available = false; // Atualiza a disponibilidade da rifa
+                    // Atualiza os dados da rifa
+                    raffle.BuyerPhone = buyerPhone;
+                    raffle.Available = false;
                 }
             }
-            _context.SaveChanges(); // Salva as alterações no banco de dados
+            await _context.SaveChangesAsync(); // Salva as alterações no banco de dados
         }
     }
 }
