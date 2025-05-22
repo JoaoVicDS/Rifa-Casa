@@ -14,6 +14,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RifaCasa.Data\RifaCasa.Data.csproj" />
+    <ProjectReference Include="..\RifaCasa.Shared\RifaCasa.Shared.csproj" />
   </ItemGroup>
 
 </Project>

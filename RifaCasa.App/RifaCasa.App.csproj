@@ -17,7 +17,8 @@
   <ItemGroup>
     <ProjectReference Include="..\RifaCasa.Controllers\RifaCasa.Controllers.csproj" />
     <ProjectReference Include="..\RifaCasa.Data\RifaCasa.Data.csproj" />
-    <ProjectReference Include="..\RifaCasa.Services\RifaCasa.Services.csproj" />
+	<ProjectReference Include="..\RifaCasa.Services\RifaCasa.Services.csproj" />
+	<ProjectReference Include="..\RifaCasa.Shared\RifaCasa.Shared.csproj" />
   </ItemGroup>
 
   <!-- Esta parte garante que arquivos da wwwroot sejam publicados -->
