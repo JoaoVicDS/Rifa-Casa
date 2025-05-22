@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RifaCasa.Models
 {
@@ -14,6 +15,7 @@ namespace RifaCasa.Models
 
         [Phone(ErrorMessage = "Telefone do comprador inválido.")]
         public string? BuyerPhone { get; set; }
+        [ForeignKey("BuyerPhone")]
         public Buyer? Buyer { get; set; }
     }
 }
