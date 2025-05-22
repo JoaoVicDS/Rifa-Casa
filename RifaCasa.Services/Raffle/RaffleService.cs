@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RifaCasa.Data;
-using RifaCasa.ViewModels;
+using RifaCasa.Shared.ViewModels;
 
 namespace RifaCasa.Services.Raffle
 {
@@ -50,7 +50,7 @@ namespace RifaCasa.Services.Raffle
                 .Select(r => new RaffleViewModel
                 {
                     Id = r.Id,
-                    Number = r.Number,
+                    Number = r.Number, 
                     Available = r.Available,
                     BuyerPhone = r.BuyerPhone, // Acessa diretamente o telefone do comprador
                     BuyerName = r.Buyer != null ? r.Buyer.Name : null // Verifica se o comprador é nulo antes de acessar a propriedade Name
@@ -66,17 +66,18 @@ namespace RifaCasa.Services.Raffle
             };
         }
 
-        public void UpdateRaffle(int id, string buyerPhone)
+        public void UpdateRaffles(List<int> rafflesIds, string buyerPhone)
         {
-            var raffle = _context.Raffles.Find(id); // Busca a rifa pelo id
-
-            if(raffle != null)
+            foreach (var id in rafflesIds)
             {
-                raffle.BuyerPhone = buyerPhone; // Atualiza o telefone do comprador
-                raffle.Available = false; // Atualiza a disponibilidade da rifa
-
-                _context.SaveChanges(); // Salva as alterações no banco de dados
+                var raffle = _context.Raffles.Find(id);
+                if (raffle != null)
+                {
+                    raffle.BuyerPhone = buyerPhone; // Atualiza o telefone do comprador
+                    raffle.Available = false; // Atualiza a disponibilidade da rifa
+                }
             }
+            _context.SaveChanges(); // Salva as alterações no banco de dados
         }
     }
 }

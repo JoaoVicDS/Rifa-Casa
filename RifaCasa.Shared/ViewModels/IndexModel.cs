@@ -1,4 +1,4 @@
-﻿namespace RifaCasa.ViewModels
+﻿namespace RifaCasa.Shared.ViewModels
 {
     public class IndexModel
     {

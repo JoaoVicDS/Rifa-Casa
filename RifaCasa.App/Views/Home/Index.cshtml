@@ -1,4 +1,5 @@
 ﻿@model IndexModel
+@rafflesUpdate RafflesUpdateModel
 @{
     ViewData["Title"] = "Rifa Casa Própria";
 }
@@ -93,17 +94,15 @@
     <!-- Seleção das Rifas -->
     <h2 class="text-center mb-4">📍 Escolha seus números da sorte</h2>
 
-    <form id="formRaffles" method="post" asp-controller="Home" asp-action="OpenFormBuyer">
-        <div class="row row-cols-5 g-2" id="raffles-container">
-            <!-- Rifas renderizadas via JavaScript -->
-        </div>
+    <div class="row row-cols-5 g-2" id="raffles-container">
+        <!-- Rifas renderizadas via JavaScript -->
+    </div>
 
-        <div class="text-center mt-4">
-            <button type="button" class="btn btn-lg btn-success shadow" id="btnFormBuyerModal">
-                Comprar
-            </button>
-        </div>
-    </form>
+    <div class="text-center mt-4">
+        <button type="button" class="btn btn-lg btn-success shadow" id="btnFormBuyerModal">
+            Comprar
+        </button>
+    </div>
 
     <!-- Paginação -->
     <nav class="mt-5 d-flex justify-content-center">
@@ -124,7 +123,7 @@
 </div>
 
 <!-- Modais -->
-<partial name="_FormBuyerModal" />
+<partial name="_FormRafflesModal" />
 <partial name="_MyRafflesModal" />
 <partial name="_NoRaffleSelectedModal" />
 
@@ -260,7 +259,7 @@
                 // Input escondido
                 const hiddenInput = document.createElement('input');
                 hiddenInput.type = 'hidden';
-                hiddenInput.name = 'rifaIds[]';
+                hiddenInput.name = 'RifaIds[]';
                 hiddenInput.value = cb.value;
                 hiddenInputsDiv.appendChild(hiddenInput);
 

@@ -1,8 +1,8 @@
-﻿<div class="modal fade" id="formBuyerModal" tabindex="-1" aria-labelledby="formBuyerModalLabel" aria-hidden="true">
+﻿<div class="modal fade" id="formRaffles" tabindex="-1" aria-labelledby="formRafflesLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
         <form class="modal-content shadow-lg border-0 rounded-4" method="post" asp-controller="" asp-action="">
             <div class="modal-header text-primary rounded-top-4" style="border-bottom: none; position: relative;">
-                <h5 class="modal-title w-100 text-center fw-bold" id="formBuyerModalLabel" style="margin: 0 auto;">Me Conte Sobre Você</h5>
+                <h5 class="modal-title w-100 text-center fw-bold" id="formRafflesLabel" style="margin: 0 auto;">Me Conte Sobre Você</h5>
                 <button type="button" class="btn-close btn-close" data-bs-dismiss="modal" aria-label="Close"
                         style="position: absolute; top: 16px; right: 16px;"></button>
             </div>
@@ -13,16 +13,16 @@
                     <!-- Formulário do comprador -->
                     <div class="col-md-7">
                         <div class="mb-2">
-                            <label for="nome" class="form-label fw-semibold">Nome</label>
-                            <input type="text" class="form-control form-control-lg rounded-3" id="nome" name="nome" required autocomplete="off" />
+                            <label for="name" class="form-label fw-semibold">Nome</label>
+                            <input type="text" class="form-control form-control-lg rounded-3" id="name" name="Name" required autocomplete="off" />
                         </div>
                         <div class="mb-2">
                             <label for="email" class="form-label fw-semibold">Email</label>
-                            <input type="email" class="form-control form-control-lg rounded-3" id="email" name="email" required autocomplete="off" />
+                            <input type="email" class="form-control form-control-lg rounded-3" id="email" name="Email" required autocomplete="off" />
                         </div>
                         <div class="mb-2">
-                            <label for="telefone" class="form-label fw-semibold">WhatsApp</label>
-                            <input type="tel" class="form-control form-control-lg rounded-3" id="telefone" name="telefone" required placeholder="(DDD) 9xxxx-xxxx" autocomplete="off" />
+                            <label for="phone" class="form-label fw-semibold">WhatsApp</label>
+                            <input type="tel" class="form-control form-control-lg rounded-3" id="phone" name="Phone" required placeholder="(DDD) 9xxxx-xxxx" autocomplete="off" />
                         </div>
                         <p class="text-muted" style="font-size: 12px">Suas informações serão usadas apenas para entrarmos em contato caso seja sorteado.</p>
                     </div>

@@ -1,4 +1,4 @@
-﻿using RifaCasa.ViewModels;
+﻿using RifaCasa.Shared.ViewModels;
 
 namespace RifaCasa.Services.Raffle
 {
