@@ -1,4 +1,4 @@
-namespace RifaCasa.Shared.ViewModels
+namespace RifaCasa.Shared.ViewModels;
 
 public class ErrorViewModel
 {

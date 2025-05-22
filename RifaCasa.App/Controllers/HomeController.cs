@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using RifaCasa.Services.Raffle;
-using RifaCasa.ViewModels;
+using RifaCasa.Shared.ViewModels;
 
 namespace RifaCasa.App.Controllers
 {

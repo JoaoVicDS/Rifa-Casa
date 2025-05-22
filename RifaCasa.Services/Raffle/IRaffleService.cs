@@ -6,6 +6,6 @@ namespace RifaCasa.Services.Raffle
     {
         IndexModel GetRaffles(int pageSize, int pageNumber = 1);
         IndexModel GetRafflesByPhone(int pageSize, string BuyerPhone);
-        void UpdateRaffle(int id, string buyerPhone);
+        void UpdateRaffles(List<int> rafflesIds, string buyerPhone);
     }
 }
