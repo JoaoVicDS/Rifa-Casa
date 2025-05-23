@@ -14,10 +14,6 @@ namespace RifaCasa.Services.Buyer
 
         public async Task<bool> AddBuyerAsync(RafflePurchaseViewModel buyer)
         {
-            if (CheckExistingBuyer(buyer.Phone))
-            {
-                return false; // O comprador já existe
-            }
             var newBuyer = new Data.Models.Buyer // Assumindo que Buyer é uma classe de modelo de dados
             {
                 Phone = buyer.Phone,

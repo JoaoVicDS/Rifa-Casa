@@ -11,23 +11,27 @@ namespace RifaCasa.Controllers
         private readonly IBuyerService _buyerService = buyerService;
 
         [HttpPost]
-        [Route("/BuyRaffles")]
-        public async Task<IActionResult> StartPurchase(RafflePurchaseViewModel model)
+        [Route("/StartPurchase")]
+        public async Task<IActionResult> StartPurchaseAsync(RafflePurchaseViewModel model)
         {
             var rafflesAvailable = await _raffleService.CheckRafflesIsAvailableAsync(model.RifaIds);
-            if(rafflesAvailable.Count > 0)
+            if (rafflesAvailable.Count > 0)
             {
-                return BadRequest($"Rifas não disponíveis: {rafflesAvailable.Id}");
+                return BadRequest($"Rifas não disponíveis: {string.Join(", ", rafflesAvailable)}");
+            }
+
+            if (_buyerService.CheckExistingBuyer(model.Phone))
+            {
+                return BadRequest("Telefone já cadastrado");
             }
             var buyer = await _buyerService.AddBuyerAsync(model);
-            if(!buyer)
+            if (!buyer)
             {
-                return BadRequest("Erro no cadastro do Comprador");
+                return BadRequest("Erro no cadastro do comprador");
             }
-
             await _raffleService.UpdateRafflesAsync(model.RifaIds, model.Phone);
 
-            return RedirectToAction("/Home/Index?success=true"); // Redireciona para a página inicial após a compra
+            return RedirectToAction("/API/MercadoPago"); // Redireciona para a API do mercado pago
         }
     }
 }

@@ -85,7 +85,7 @@ namespace RifaCasa.Services.Raffle
 
         public async Task<List<int>> CheckRafflesIsAvailableAsync(List<int> rafflesIds)
         {
-            var rafflesNotAvailable = new List<int> { id = 1 }; // Inicializa a lista de rifas não disponíveis
+            var rafflesNotAvailable = new List<int>(); // Inicializa a lista de rifas não disponíveis
             foreach (var id in rafflesIds)
             {
                 var raffle = await _context.Raffles.FindAsync(id); // Obtém a rifa pelo ID
