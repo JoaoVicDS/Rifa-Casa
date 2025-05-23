@@ -15,7 +15,7 @@ namespace RifaCasa.App.Controllers
         public IActionResult Index()
         {
             int pageSize = 20; // Quantidade de Rifas Por Página
-            var model = _raffleService.GetRaffles(pageSize); // Chama o serviço para obter as rifas
+            var model = _raffleService.GetRafflesAsync(pageSize); // Chama o serviço para obter as rifas
             return View(model); // Retorna a view com o modelo
         }
 

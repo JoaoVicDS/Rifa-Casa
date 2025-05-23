@@ -1,6 +1,7 @@
-using RifaCasa.Data;
+using RifaCasa.Data.EFCore;
 using Microsoft.EntityFrameworkCore;
 using RifaCasa.Services.Raffle;
+using RifaCasa.Services.Buyer;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,6 +13,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddScoped<IRaffleService, RaffleService>();
+builder.Services.AddScoped<IBuyerService, BuyerService>();
 
 var app = builder.Build();
 
