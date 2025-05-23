@@ -2,6 +2,7 @@ using RifaCasa.Data.EFCore;
 using Microsoft.EntityFrameworkCore;
 using RifaCasa.Services.Raffle;
 using RifaCasa.Services.Buyer;
+using RifaCasa.Controllers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -10,10 +11,13 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(connectionString));
 
-// Add services to the container.
-builder.Services.AddControllersWithViews();
-builder.Services.AddScoped<IRaffleService, RaffleService>();
-builder.Services.AddScoped<IBuyerService, BuyerService>();
+
+builder.Services.AddScoped<IRaffleService, RaffleService>(); // Adiciona o serviço de RaffleService
+builder.Services.AddScoped<IBuyerService, BuyerService>(); // Adiciona o serviço de BuyerService
+
+builder.Services
+    .AddControllersWithViews()
+    .AddApplicationPart(typeof(PurchaseController).Assembly); // Adiciona o assembly do PurchaseController como parte da aplicação
 
 var app = builder.Build();
 

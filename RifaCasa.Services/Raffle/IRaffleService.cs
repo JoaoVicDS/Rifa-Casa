@@ -7,5 +7,6 @@ namespace RifaCasa.Services.Raffle
         Task<IndexModel> GetRafflesAsync(int pageSize, int pageNumber = 1);
         Task<IndexModel> GetRafflesByPhoneAsync(int pageSize, string BuyerPhone);
         Task UpdateRafflesAsync(List<int> rafflesIds, string buyerPhone);
+        Task<List<int>> CheckRafflesIsAvailableAsync(List<int> rafflesIds);
     }
 }

@@ -72,12 +72,29 @@ namespace RifaCasa.Services.Raffle
                 var raffle = await _context.Raffles.FindAsync(id); // Obtém a rifa pelo ID
                 if (raffle != null) // Verifica se a rifa existe
                 {
-                    // Atualiza os dados da rifa
-                    raffle.BuyerPhone = buyerPhone;
-                    raffle.Available = false;
+                    if(raffle.Available == true) // Verifica se a rifa está disponível
+                    {
+                        // Atualiza os dados da rifa
+                        raffle.BuyerPhone = buyerPhone;
+                        raffle.Available = false;
+                    }
                 }
             }
             await _context.SaveChangesAsync(); // Salva as alterações no banco de dados
+        }
+
+        public async Task<List<int>> CheckRafflesIsAvailableAsync(List<int> rafflesIds)
+        {
+            var rafflesNotAvailable = new List<int> { id = 1 }; // Inicializa a lista de rifas não disponíveis
+            foreach (var id in rafflesIds)
+            {
+                var raffle = await _context.Raffles.FindAsync(id); // Obtém a rifa pelo ID
+                if(raffle == null || !raffle.Available)
+                {
+                    rafflesNotAvailable.Add(id); // Rifa não encontrada ou não disponível
+                }
+            }
+            return rafflesNotAvailable; // Retorna a lista de rifas não disponíveis
         }
     }
 }
