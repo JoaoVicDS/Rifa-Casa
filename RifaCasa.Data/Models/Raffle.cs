@@ -15,7 +15,13 @@ namespace RifaCasa.Data.Models
 
         [Phone(ErrorMessage = "Telefone do comprador inválido.")]
         public string? BuyerPhone { get; set; }
-        [ForeignKey("BuyerPhone")]
+
+        [ForeignKey(nameof(BuyerPhone))]
         public Buyer? Buyer { get; set; }
+
+        public int PaymentId { get; set; }
+
+        [ForeignKey(nameof(PaymentId))]
+        public Payment? Payment { get; set; }
     }
 }
