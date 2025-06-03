@@ -1,40 +1,53 @@
-# Rifa da Casa Nova
+# RifaCasa
+RifaCasa é um projeto pessoal desenvolvido com o objetivo de realizar um grande sonho: sair do aluguel e conquistar minha casa própria.
+Através do site, é possível participar da rifa solidária, visualizar os detalhes dos prêmios, valores, regras, e — em breve — realizar o pagamento via MercadoPago.
 
-Este é um projeto simples para divulgar e gerenciar uma rifa com o objetivo de arrecadar fundos para a compra de uma casa.
+# Pré-visualização
+O projeto está disponível para visualização no Render:
 
-## Funcionalidades Principais
+https://rifa-casa.onrender.com/
 
-* **Apresentação da Rifa:** Exibe informações sobre a rifa, o prêmio e o custo de cada número.
-* **Visualização de Números:** Permite aos usuários visualizar os números das rifa.
-* **Seleção de Números:** Os usuários podem selecionar um ou mais números da sorte.
-* **Contato para Reserva:** O sistema coleta informações de contato do usuário (nome, e-mail, WhatsApp) para entrarmos em contato caso seja sorteado.
-* **Pagamentos (Futuro):** [Esta funcionalidade está em desenvolvimento ou pode ser implementada futuramente para automatizar o processo de pagamento.]
+# Funcionalidades
+- Página com informações principais (descrição, regras, valores)
+- Exibição do número de rifas disponíveis e vendidos
+- Pagamento via MercadoPago (em desenvolvimento)
+- Responsividade para celulares
 
-## Tecnologias Utilizadas
+# Como rodar o projeto localmente
+### Pré-Requisitos
+- .NET 6 ou superior
+- PostgreSQL
 
-Este projeto foi desenvolvido utilizando as seguintes tecnologias:
+### Passo a passo
+Clonar o repo
+```
+git clone https://github.com/JoaoVicDS/Rifa-Casa.git
+cd Rifa-Casa
+```
+Configurar o banco de dados
 
-* **Back-end:** ASP.NET Core
-* **Banco de Dados:** PostgreSQL (hospedado no Render)
-* **ORM:** Entity Framework Core
-* **Hospedagem:** Render
+Edite o arquivo appsettings.json com sua string de conexão PostgreSQL
+```
+"ConnectionStrings": {
+  "DefaultConnection": "Host=localhost;Port=5432;Database=rifacasa_database;Username=user;Password=password"
+}
+```
+Aplicar as migrations
+```
+dotnet ef database update
+```
+Caso ainda não tenha o EF Core CLI
+```
+dotnet tool install --global dotnet-ef
+```
+Executar o projeto
+```
+dotnet run
+```
+Acesse no navegador
 
-## Como Funciona
+- https://localhost:5001
+- http://localhost:5000
 
-1.  O usuário acessa o site e visualiza as informações da rifa.
-2.  Na página de números, ele pode ver os números disponíveis e selecionar os desejados.
-3.  Ao prosseguir, o usuário informa seus dados de contato.
-4.  Visualiza o total a ser pago e seleciona a forma de pagamento.
-5.  Após a confirmação do pagamento, poderá visualizar suas rifas compradas na página Minhas Rifas.
-
-## Próximos Passos (Melhorias Futuras)
-
-* Implementação de pagamentos por cartões e pix atráves do Mercado Pago.
-
-## Contribuição
-
-Este é um projeto pessoal. Contribuições não são esperadas neste momento.
-
-## Autor
-
-João Víctor
+# Como contribuir
+Esse é um projeto pessoal com um objetivo muito importante para mim. Se você quiser apoiar de forma técnica ou divulgar, sinta-se à vontade para abrir uma issue ou contribuir com sugestões e melhorias!
